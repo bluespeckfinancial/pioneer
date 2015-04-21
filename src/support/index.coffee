@@ -140,7 +140,8 @@ module.exports = ->
     notDefined = code.getPayloadItem('stepResult').isUndefined()
     if failed then @_scenarioStatus = false
     if succeeded then @_scenarioStatus = true
-    if pending or skipped or notDefined then @_scenarioStatus = null
+    if @_scenarioStatus isnt false
+      if pending or skipped or notDefined then @_scenarioStatus = null
     callback()
 
   @AfterScenario (code, callback) =>
